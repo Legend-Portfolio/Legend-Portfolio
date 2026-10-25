@@ -823,7 +823,7 @@
             </div>
 
             <form class="order-form"
-  action="https://formsubmit.co/YOUR_EMAIL_ADDRESS"
+  action="https://formsubmit.co/mowtusiganguly@gmail.com"
 
                 method="POST"
                 enctype="multipart/form-data"
@@ -929,9 +929,13 @@
 
                     <input
                         type="file"
-                        id="project-file"
-                        name="attachment"
+                        name="files"
+                        multiple
                         accept="image/*,video/*"
+                        onchange="if(this.files.length >30) {  
+                            alert('you can select a maximum of 30 photos or videos.');
+                            this.value = '';
+                        }"
                     >
 
                     <p class="form-note">
