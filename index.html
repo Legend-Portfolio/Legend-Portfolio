@@ -840,15 +840,16 @@
 
                 <div class="form-row">
 
-                    <div class="form-group">
-                        <label for="files">Choose Your Photos or Videos </label>
-                        <input
-                            type="file"
-                            id="files"
-                            name="files"
-                            multiple
-                            accept=" image/*,video/*">
-                    </div>
+                  <div class="form-group">
+    <label for="name">Your Name *</label>
+    <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Enter your name"
+        required
+    >
+</div>
 
                     <div class="form-group">
                         <label for="customer-email">Your Email *</label>
@@ -918,29 +919,7 @@
                     >
                 </div>
 
-                <div class="form-group">
-                    <label for="project-file">
-                        Upload a Photo or Video
-                    </label>
-
-                    <input
-                        type="file"
-                        name="files"
-                        multiple
-                        accept="image/*,video/*"
-                        onchange="if(this.files.length >30) {  
-                            alert('you can select a maximum of 30 photos or videos.');
-                            this.value = '';
-                        }"
-                    >
-
-                    <p class="form-note">
-                        For large video files, upload them to Google Drive,
-                        set the appropriate sharing permissions, and paste
-                        the link above. The file-upload email service may
-                        have size or file-type restrictions.
-                    </p>
-                </div>
+               
 
                 <button type="submit" class="submit-btn">
                     Submit Your Project →
