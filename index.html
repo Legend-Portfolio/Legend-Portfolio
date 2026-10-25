@@ -823,11 +823,8 @@
             </div>
 
             <form class="order-form"
-  action="https://formsubmit.co/mowtusiganguly@gmail.com"
-
-                method="POST"
-                enctype="multipart/form-data"
-            >
+             id="orderForm">
+            
 
                 <input
                     type="hidden"
@@ -844,14 +841,13 @@
                 <div class="form-row">
 
                     <div class="form-group">
-                        <label for="customer-name">Your Name *</label>
+                        <label for="files">Choose Your Photos or Videos </label>
                         <input
-                            type="text"
-                            id="customer-name"
-                            name="Customer Name"
-                            placeholder="Enter your name"
-                            required
-                        >
+                            type="file"
+                            id="files"
+                            name="files"
+                            multiple
+                            accept=" image/*,video/*">
                     </div>
 
                     <div class="form-group">
@@ -951,8 +947,8 @@
                 </button>
 
                 <p class="form-note">
-                    Please provide only files you have permission to share.
-                    Your project will be reviewed before work begins.
+                    After submitting your details, whatsapp will open with your order information.
+                    Please select your photos and videos in whatsapp and tap send to complete your order.
                 </p>
 
             </form>
@@ -1023,52 +1019,33 @@
 
     <!-- JAVASCRIPT -->
 
-   <script>
-        // Automatically update the copyright year
+ <script>
+document.getElementById("orderForm").addEventListener("submit", function(event) {
+    event.preventDefault();
 
-        document.getElementById("year").textContent =
-            new Date().getFullYear();
+    const form = this;
+    const data = new FormData(form);
 
+    let message = "NEW LEGEND EDITING ORDER\n\n";
+   
 
-        // Smooth navigation for buttons and menu links
+    for (const [key, value] of data.entries()) {
+       
 
-        document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+        if (typeof value === "string" && value.trim()) {
+            message += key + ": " + value.trim() + "\n";
+        }
+    }
+    
+    message += "\nI will send my photos/videos separately in this whatsapp chat.";
 
-            link.addEventListener("click", function (event) {
+    const phone = "916291225985";
+    const url = "https://wa.me/" + phone +
+                "?text=" + encodeURIComponent(message);
 
-                const targetId = this.getAttribute("href");
-
-                const target = document.querySelector(targetId);
-
-                if (target) {
-                    event.preventDefault();
-
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-                }
-
-            });
-
-        });
-
-
-        // Show a message while the order form is submitting
-
-        const orderForm = document.querySelector(".order-form");
-
-        orderForm.addEventListener("submit", function () {
-
-            const submitButton =
-                orderForm.querySelector(".submit-btn");
-
-            submitButton.textContent = "Sending Your Project...";
-
-            submitButton.disabled = true;
-
-        });
-    </script>
+    window.location.href = url;
+});
+</script>
     </body>
     <!-- republish -->
 </html>
