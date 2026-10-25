@@ -822,8 +822,7 @@
                 </p>
             </div>
 
-            <form
-                class="order-form"
+            <form class="order-form"
             id="orderForm"
       onsubmit="sendToWhatsApp(event)">
 
@@ -1031,7 +1030,9 @@ function sendToWhatsApp(event) {
     }
 
     const phone = "916291225985";
-    const url = "https://wa.me/+916291225985"?text=" + encodeURIComponent(message);
+    const url = "https://wa.me/" + phone 
+        +
+              ?text=" + encodeURIComponent(message);
 
     window.open(url, "_blank");
 }
