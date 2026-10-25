@@ -823,8 +823,11 @@
             </div>
 
             <form class="order-form"
-            id="orderForm"
-      onsubmit="sendToWhatsApp(event)">
+  action="https://formsubmit.co/YOUR_EMAIL_ADDRESS"
+
+                method="POST"
+                enctype="multipart/form-data"
+            >
 
                 <input
                     type="hidden"
@@ -1016,27 +1019,52 @@
 
     <!-- JAVASCRIPT -->
 
-    <script>
-function sendToWhatsApp(event) {
-    event.preventDefault();
+   <script>
+        // Automatically update the copyright year
 
-    const form = event.target;
-    const data = new FormData(form);
-    let message = "NEW EDITING ORDER\n\n";
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
 
-    for (const [key, value] of data.entries()) {
-        if (value instanceof File) continue;
-        message += key + ": " + value + "\n";
-    }
 
-    const phone = "916291225985";
-    const url = "https://wa.me/" + phone 
-        +
-              ?text=" + encodeURIComponent(message);
+        // Smooth navigation for buttons and menu links
 
-    window.open(url, "_blank");
-}
-</script>
+        document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+
+            link.addEventListener("click", function (event) {
+
+                const targetId = this.getAttribute("href");
+
+                const target = document.querySelector(targetId);
+
+                if (target) {
+                    event.preventDefault();
+
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+
+            });
+
+        });
+
+
+        // Show a message while the order form is submitting
+
+        const orderForm = document.querySelector(".order-form");
+
+        orderForm.addEventListener("submit", function () {
+
+            const submitButton =
+                orderForm.querySelector(".submit-btn");
+
+            submitButton.textContent = "Sending Your Project...";
+
+            submitButton.disabled = true;
+
+        });
+    </script>
     </body>
     <!-- republish -->
 </html>
