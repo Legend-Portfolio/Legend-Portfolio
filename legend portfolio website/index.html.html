@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LEGEND | Personal Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+     font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #151515;
+}
+            
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* HEADER */
+
+        header {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.90);
+            color: white;
+            border-radius: 18px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: sticky;
+            top: 15px;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            font-size: 14px;
+            color: #dddddd;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        /* HOME SECTION */
+
+        .hero {
+            max-width: 1200px;
+            min-height: 620px;
+            margin: auto;
+            padding: 65px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .small-heading {
+            font-size: 13px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #777777;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 85px);
+            line-height: 1.05;
+            letter-spacing: -4px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #888888;
+        }
+
+        .hero-description {
+            max-width: 450px;
+            font-size: 16px;
+            color: #666666;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: 1px solid #151515;
+        }
+
+        .btn-dark {
+            background: #151515;
+            color: white;
+        }
+
+        .btn-light {
+            background: white;
+            color: #151515;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            opacity: 0.8;
+        }
+
+        .hero-image {
+            flex: 0 0 40%;
+            max-width: 420px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 20px;
+            background: #eeeeee;
+        }
+
+        /* INSTAGRAM */
+
+        .instagram {
+            margin: 10px auto 70px;
+            max-width: 1050px;
+            width: 86%;
+            padding: 35px;
+            border: 1px solid #eeeeee;
+            border-radius: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .instagram h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .instagram p {
+            color: #777777;
+            font-size: 14px;
+        }
+
+        .instagram-link {
+            background: #151515;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        /* GENERAL SECTIONS */
+
+        section.content-section {
+            padding: 85px 7%;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        .section-heading {
+            margin-bottom: 35px;
+        }
+
+        .section-heading p {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: #888888;
+            margin-bottom: 12px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            letter-spacing: -1.5px;
+        }
+
+        .section-heading .description {
+            font-size: 15px;
+            letter-spacing: 0;
+            line-height: 1.8;
+            margin-top: 15px;
+            max-width: 600px;
+        }
+
+        /* PHOTO GALLERY */
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 14px;
+            background: #f2f2f2;
+        }
+
+        .gallery-item img {
+            display: block;
+            width: 100%;
+            height: 330px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* EDIT GALLERY */
+
+        .edit-section {
+            background: #f8f8f8;
+            border-radius: 24px;
+        }
+
+        .edit-card {
+            background: white;
+            border: 1px solid #eeeeee;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .edit-card img {
+            width: 100%;
+            height: 250px;
+            display: block;
+            object-fit: cover;
+        }
+
+        .edit-card-text {
+            padding: 20px;
+        }
+
+        .edit-card-text h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .edit-card-text p {
+            color: #777777;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* TESTIMONIALS */
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .testimonial {
+            padding: 25px;
+            border: 1px solid #eeeeee;
+            border-radius: 14px;
+        }
+
+        .testimonial p {
+            color: #555555;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .testimonial h3 {
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        .testimonial small {
+            display: block;
+            margin-top: 5px;
+            color: #999999;
+        }
+
+        /* ORDER FORM */
+
+        .order-section {
+            background: #151515;
+            color: white;
+            border-radius: 24px;
+        }
+
+        .order-section .section-heading p {
+            color: #aaaaaa;
+        }
+
+        .order-section .section-heading .description {
+            color: #bbbbbb;
+        }
+
+        .order-form {
+            max-width: 750px;
+            margin-top: 35px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #444444;
+            border-radius: 8px;
+            background: #242424;
+            color: white;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #aaaaaa;
+        }
+
+        .form-group textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .form-group input[type="file"] {
+            padding: 12px;
+        }
+
+        .form-group input[type="file"]::file-selector-button {
+            padding: 9px 12px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background: white;
+            color: #151515;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .form-note {
+            margin-top: 15px;
+            font-size: 12px;
+            line-height: 1.7;
+            color: #aaaaaa;
+        }
+
+        /* CONTACT */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns:  1fr;
+            justify-items: center;
+            width: 100%;
+        }
+
+        .contact-card {
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid #eeeeee;
+            border-radius: 15px;
+            padding: 28px;
+            margin: 0 auto;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 12px;
+        }
+
+        .contact-card p {
+            color: #777777;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            overflow-wrap: anywhere;
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 50px;
+            padding: 35px 7%;
+            text-align: center;
+            background: #111111;
+            color: white;
+        }
+
+        footer p {
+            color: #aaaaaa;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        footer .footer-logo {
+            font-size: 23px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            margin-bottom: 12px;
+        }
+
+        /* MOBILE RESPONSIVE */
+
+        @media (max-width: 800px) {
+            header {
+                width: 94%;
+                padding: 17px 20px;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                align-items: flex-start;
+                padding-top: 35px;
+                gap: 30px;
+            }
+
+            .hero-image {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .hero-image img {
+                height: 400px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .instagram {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 25px;
+            }
+
+            .gallery-grid,
+            .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-item img {
+                height: 260px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            header {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            nav {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 35px 6% 60px;
+            }
+
+            .hero-image img {
+                height: 330px;
+            }
+
+            section.content-section {
+                padding: 60px 6%;
+            }
+
+            .gallery-grid,
+            .testimonial-grid,
+            .contact-grid,
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item img {
+                height: 340px;
+            }
+
+            .edit-card img {
+                height: 240px;
+            }
+
+            .order-section {
+                border-radius: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+        <a href="#home" class="logo">LEGEND.AS40</a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#photos">Photos</a>
+            <a href="#edits">Edits</a>
+            <a href="#order">Order</a>
+        </nav>
+    </header>
+
+
+    <!-- HOME -->
+
+    <main>
+        <section class="hero" id="home">
+
+            <div class="hero-text">
+                <p class="small-heading">Personal Portfolio</p>
+  
+
+                <h1>
+                    Soumyajit<br>
+                    <span style="color: crimson;">Ganguly.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Welcome to my world. Explore my photography,
+                    discover my edits, and let's create something
+                    amazing together.
+                </p>
+
+                <div class="buttons">
+                    <a href="#photos" class="btn btn-dark">
+                        Photo Gallery
+                    </a>
+
+                    <a href="#edits" class="btn btn-light">
+                        Explore My Edits
+                    </a>
+
+                    <a href="#order" class="btn btn-light">
+                        Order an Edit
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+
+                <!-- 🟨 MAIN PHOTO: REPLACE THE SOURCE BELOW -->
+
+                <img
+                    src="C:\Users\USER\Downloads\WhatsApp Image 2026-10-25 at 9.10.41 AM.jpeg"
+                    alt="Soumyajit Ganguly"
+                >
+
+                <!-- 🟨 END OF MAIN PHOTO SOURCE -->
+
+            </div>
+
+        </section>
+
+
+        <!-- INSTAGRAM -->
+
+        <section class="instagram">
+            <div>
+                <h2>Find Me on Instagram</h2>
+                <p>@legend.as40</p>
+            </div>
+
+            <a
+                href="https://www.instagram.com/legend.as40/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="instagram-link"
+            >
+                Follow Me ↗
+            </a>
+        </section>
+
+
+        <!-- PHOTO GALLERY -->
+
+        <section class="content-section" id="photos">
+
+            <div class="section-heading">
+                <p>01 / PHOTOGRAPHY</p>
+                <h2>My Photo Gallery.</h2>
+                <p class="description">
+                    A collection of my favourite pictures, personal
+                    moments, and creative shots.
+                </p>
+            </div>
+
+            <div class="gallery-grid">
+
+                <!-- 🟨 PHOTO 1 SOURCE -->
+                <div class="gallery-item">
+                    <img src="C:\Users\USER\Downloads\WhatsApp Image 2026-10-24 at 11.02.51 PM.jpeg" alt="Gallery photo 1" loading="lazy">
+                </div>
+
+                <!-- 🟨 PHOTO 2 SOURCE -->
+                <div class="gallery-item">
+                    <img src="C:\Users\USER\Downloads\WhatsApp Image 2026-10-24 at 11.02.50 P.jpg" alt="Gallery photo 2" loading="lazy">
+                </div>
+
+                <!-- 🟨 PHOTO 3 SOURCE -->
+                <div class="gallery-item">
+                    <img src="C:\Users\USER\Downloads\WhatsApp Image 2026-10-24 at 11.02.51 PM (1).jpeg" alt="Gallery photo 3" loading="lazy">
+                </div>
+
+                <!-- 🟨 PHOTO 4 SOURCE -->
+                <div class="gallery-item">
+                    <img src="C:\Users\USER\Downloads\WhatsApp Image 2026-10-24 at 11.02.52 PM (1).jpeg" alt="Gallery photo 4" loading="lazy">
+                </div>
+
+                <!-- 🟨 PHOTO 5 SOURCE -->
+                <div class="gallery-item">
+                    <img src="C:\Users\USER\Downloads\WhatsApp Image 2026-10-24 at 11.02.51 PM (2).jpeg" alt="Gallery photo 5" loading="lazy">
+                </div>
+
+                <!-- 🟨 PHOTO 6 SOURCE -->
+                <div class="gallery-item">
+                    <img src="C:\Users\USER\Downloads\WhatsApp Image 2026-10-24 at.jpg" alt="Gallery photo 6" loading="lazy">
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- EDIT GALLERY -->
+
+        <section class="content-section edit-section" id="edits">
+
+            <div class="section-heading">
+                <p>02 / CREATIVE WORK</p>
+                <h2>My Graphic Design and Editing Gallery.</h2>
+                <p class="description">
+                    Explore my creative work, visual effects,
+                    cinematic edits, and video projects.
+                </p>
+            </div>
+
+            <div class="gallery-grid">
+
+                <!-- 🟨 EDIT IMAGE 1 SOURCE -->
+                <div class="edit-card">
+                    <img src="C:\Users\USER\Downloads\WhatsApp Image 2026-10-24 at 11.52.17 PM.jpeg" alt="Editing project 1" loading="lazy">
+                    <div class="edit-card-text">
+                        <h3>Monster Graphic Edit</h3>
+                        <p>Colour grading and dual visuals.</p>
+                    </div>
+                </div>
+
+                <!-- 🟨 EDIT IMAGE 2 SOURCE -->
+                <div class="edit-card">
+                    <img src="C:\Users\USER\Downloads\WhatsApp Image 2026-10-24 at 11.55.38 PM.jpeg" alt="Editing project 2" loading="lazy">
+                    <div class="edit-card-text">
+                        <h3>Monster Devil Streetwear</h3>
+                        <p>visual cool and aesthetic</p>
+                    </div>
+                </div>
+
+                <!-- 🟨 EDIT IMAGE 3 SOURCE -->
+                <div class="edit-card">
+                    <img src="C:\Users\USER\Downloads\Cinematic Diet Coke Urban Poster.png" alt="Editing project 3" loading="lazy">
+                    <div class="edit-card-text">
+                        <h3>Diet Coke</h3>
+                        <p>Unique effects and visual storytelling.</p>
+                    </div>
+                </div>
+<h3>Click this link to see all edited video ---> </h3>
+<a
+                href="https://drive.google.com/drive/folders/1SYZRcCrbA_qYzMJpgHzgyAW809-SRyeO"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="instagram-link"
+                >
+                see all edits ↗
+            </a>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <a href="#order" class="btn btn-dark">
+                    Get Your Video Edited →
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- TESTIMONIALS -->
+
+        <section class="content-section" id="testimonials">
+
+            <div class="section-heading">
+                <p>03 / CLIENT FEEDBACK</p>
+                <h2>Testimonials.</h2>
+                <p class="description">
+                    Feedback from people I have worked with.
+                </p>
+            </div>
+
+            <div class="testimonial-grid">
+
+                <div class="testimonial">
+                    <p>
+                        "Satisfying edits and so cool"
+                    </p>
+                    <h3>Gaurav Das</h3>
+                    <small>Video Editing Client</small>
+                </div>
+
+                <div class="testimonial">
+                    <p>
+                        "the graphic design was really aweasome and now it is making good sales"
+                    </p>
+                    <h3>Shresthanshu Bhattacharjee</h3>
+                    <small>Graphic Design Client</small>
+                </div>
+
+                <div class="testimonial">
+                    <p>
+                        "The thumbnail attracts more followers. Thanks a lot"
+                    </p>
+                    <h3>Rudra Sharma </h3>
+                    <small>Thumbnail Design Client</small>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ORDER FORM -->
+
+        <section class="content-section order-section" id="order">
+
+            <div class="section-heading">
+                <p>04 / WORK WITH ME</p>
+                <h2>Let's Edit Your Video.</h2>
+                <p class="description">
+                    Tell me what you want. Share your requirements,
+                    select your editing style, and send your project
+                    details to get started.
+                </p>
+            </div>
+
+            <form
+                class="order-form"
+
+                action="https://formsubmit.co/mowtusiganguly@gmail.com"
+
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+                <input
+                    type="hidden"
+                    name="_subject"
+                    value="New Editing Order - LEGEND Portfolio"
+                >
+
+                <input
+                    type="hidden"
+                    name="_captcha"
+                    value="true"
+                >
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="customer-name">Your Name *</label>
+                        <input
+                            type="text"
+                            id="customer-name"
+                            name="Customer Name"
+                            placeholder="Enter your name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer-email">Your Email *</label>
+                        <input
+                            type="email"
+                            id="customer-email"
+                            name="Customer Email"
+                            placeholder="Enter your email"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="edit-type">Editing Type *</label>
+
+                        <select id="edit-type" name="Editing Type" required>
+                            <option value="">Choose an editing style</option>
+                            <option>Instagram Reel</option>
+                            <option>YouTube Video</option>
+                            <option>Cinematic Edit</option>
+                            <option>Velocity Edit</option>
+                            <option>Photo Editing</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="budget">Your Budget</label>
+
+                        <select id="budget" name="Budget">
+                            <option value="">Select your budget</option>
+                            <option>Below ₹200</option>
+                            <option>₹200 – ₹500</option>
+                            <option>₹500 – ₹1,000</option>
+                            <option>₹1,000+</option>
+                            <option>Discuss with me</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="project-details">Describe Your Edit *</label>
+
+                    <textarea
+                        id="project-details"
+                        name="Project Details"
+                        placeholder="Describe the style, duration, effects, deadline, and other requirements..."
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="reference-link">
+                        Video or Reference Link
+                    </label>
+
+                    <input
+                        type="url"
+                        id="reference-link"
+                        name="Reference Link"
+                        placeholder="Paste a Google Drive or video link"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="project-file">
+                        Upload a Photo or Video
+                    </label>
+
+                    <input
+                        type="file"
+                        id="project-file"
+                        name="attachment"
+                        accept="image/*,video/*"
+                    >
+
+                    <p class="form-note">
+                        For large video files, upload them to Google Drive,
+                        set the appropriate sharing permissions, and paste
+                        the link above. The file-upload email service may
+                        have size or file-type restrictions.
+                    </p>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    Submit Your Project →
+                </button>
+
+                <p class="form-note">
+                    Please provide only files you have permission to share.
+                    Your project will be reviewed before work begins.
+                </p>
+
+            </form>
+
+        </section>
+
+
+        <!-- CONTACT -->
+
+        <section class="content-section" id="contact">
+
+            <div class="section-heading">
+                <p>05 / GET IN TOUCH</p>
+                <h2>Contact Me.</h2>
+                <p class="description">
+                    Have a project in mind? Contact me directly
+                    on WhatsApp or by phone.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+
+                <div class="contact-card">
+                    <h3>WhatsApp</h3>
+                    <p>Discuss your project with me directly.</p>
+
+                    <!-- 🟨 WHATSAPP NUMBER SOURCE -->
+                    <a
+                        href="https://wa.me/916291225985"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-dark"
+                    >
+                        Message on WhatsApp
+                    </a>
+                
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+        <div class="footer-logo">LEGEND.</div>
+
+        <p>Designed with creativity by Soumyajit Ganguly.</p>
+
+        <p>
+            Instagram:
+            <a
+                href="https://www.instagram.com/legend.as40/"
+                target="_blan<divk"
+                rel="noopener noreferrer"
+            >
+                @legend.as40
+            </a>
+        </p>
+
+        <p style="margin-top: 15px;">
+            © <span id="year"></span> LEGEND Portfolio. All rights reserved.
+        </p>
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+        // Automatically update the copyright year
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+
+        // Smooth navigation for buttons and menu links
+
+        document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+
+            link.addEventListener("click", function (event) {
+
+                const targetId = this.getAttribute("href");
+
+                const target = document.querySelector(targetId);
+
+                if (target) {
+                    event.preventDefault();
+
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+
+            });
+
+        });
+
+
+        // Show a message while the order form is submitting
+
+        const orderForm = document.querySelector(".order-form");
+
+        orderForm.addEventListener("submit", function () {
+
+            const submitButton =
+                orderForm.querySelector(".submit-btn");
+
+            submitButton.textContent = "Sending Your Project...";
+
+            submitButton.disabled = true;
+
+        });
+    </script>
+
+</body>
+</html>
