@@ -717,6 +717,81 @@ footer {
     z-index: 1;
 }
 
+/* LEGEND.AS40 — Click-to-Fill Chocolate Liquid */
+
+.hero .btn {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    cursor: pointer;
+    transition:
+        color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.hero .btn::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: -15%;
+    bottom: -120%;
+    width: 130%;
+    height: 220%;
+
+    background: linear-gradient(
+        135deg,
+        #8B5E3C 0%,
+        #5A351C 45%,
+        #3B2416 100%
+    );
+
+    border-radius: 42% 48% 0 0;
+    transform: rotate(0deg);
+}
+
+.hero .btn:hover:not(.liquid-filling) {
+    transform: translateY(-3px);
+}
+
+/* Fill animation starts after clicking */
+.hero .btn.liquid-filling {
+    color: #fff !important;
+    border-color: #5A351C !important;
+    pointer-events: none;
+}
+
+.hero .btn.liquid-filling::before {
+    bottom: -35%;
+    animation:
+        chocolateFill 0.85s ease-in-out forwards,
+        chocolateWave 1.2s linear 0.85s infinite;
+}
+
+@keyframes chocolateFill {
+    from {
+        bottom: -120%;
+    }
+    to {
+        bottom: -35%;
+    }
+}
+
+@keyframes chocolateWave {
+    0% {
+        transform: rotate(0deg);
+        border-radius: 42% 48% 0 0;
+    }
+    50% {
+        transform: rotate(180deg);
+        border-radius: 48% 42% 0 0;
+    }
+    100% {
+        transform: rotate(360deg);
+        border-radius: 42% 48% 0 0;
+    }
+}
+
     </style>
 </head>
 
@@ -1247,6 +1322,38 @@ document.addEventListener("mousemove", function(e) {
   );
 });
 </script>
+    
+<script>
+document.querySelectorAll('.hero .btn[href^="#"]').forEach(button => {
+    button.addEventListener('click', function (event) {
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+
+        if (!target) return;
+
+        event.preventDefault();
+
+        // Prevent repeated clicks during the animation
+        if (this.classList.contains('liquid-filling')) return;
+
+        this.classList.add('liquid-filling');
+
+        // Wait for the liquid to fill before scrolling
+        setTimeout(() => {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+
+            // Reset the button for the next visit
+            setTimeout(() => {
+                this.classList.remove('liquid-filling');
+            }, 500);
+        }, 850);
+    });
+});
+</script>
+
 
     </body>
     <!-- republish -->
