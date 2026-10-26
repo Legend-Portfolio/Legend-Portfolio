@@ -672,6 +672,22 @@ header {
     }
 }
 
+/* LEGEND.AS40 — Deep Luxury Brown Spotlight */
+.brown-spotlight {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background: radial-gradient(
+    380px circle at var(--mouse-x, 50%) var(--mouse-y, 30%),
+    rgba(101, 67, 33, 0.24),
+    rgba(101, 67, 33, 0.12) 35%,
+    rgba(101, 67, 33, 0.04) 60%,
+    transparent 75%
+  );
+}
+
     </style>
 </head>
 
@@ -1189,6 +1205,19 @@ document.addEventListener("keydown", (event) => {
             aria-label="Close image preview">&times;</button>
     <img id="lightboxImage" src="" alt="Full-size graphic design preview">
 </div>
+
+<div class="brown-spotlight"></div>
+
+<script>
+document.addEventListener("mousemove", function(e) {
+  document.documentElement.style.setProperty(
+    "--mouse-x", e.clientX + "px"
+  );
+  document.documentElement.style.setProperty(
+    "--mouse-y", e.clientY + "px"
+  );
+});
+</script>
 
     </body>
     <!-- republish -->
