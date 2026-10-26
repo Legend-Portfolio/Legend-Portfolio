@@ -36,23 +36,32 @@
 
         /* HEADER */
 
-        header {
-            width: 90%;
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.60);
-            color: white;
-            border-radius: 18px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            position: sticky;
-            top: 15px;
-            z-index: 1000;
-        }
+       
+header {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* Tinted glass */
+    background: rgba(20, 20, 20, 0.40);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 18px;
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+
+    color: white;
+    position: sticky;
+    top: 15px;
+    z-index: 1000;
+
+    /* Soft glass shadow */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
 
         .logo {
             font-size: 25px;
@@ -579,6 +588,18 @@
                 border-radius: 16px;
             }
         }
+
+        /* Smooth text reveal on scroll */
+.reveal-text {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-text.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
     </style>
 </head>
 
@@ -607,7 +628,7 @@
                 <p class="small-heading">Personal Portfolio</p>
   
 
-                <h1>
+                <h1 class="reveal-text">
                     Soumyajit<br>
                     <span style="color: crimson;">Ganguly.</span>
                 </h1>
@@ -674,7 +695,7 @@
 
             <div class="section-heading">
                 <p>01 / PHOTOGRAPHY</p>
-                <h2>My Photo Gallery.</h2>
+                <h2 class="reveal-text">My Photo Gallery.</h2>
                 <p class="description">
                     A collection of my favourite pictures, personal
                     moments, and creative shots.
@@ -723,7 +744,7 @@
 
             <div class="section-heading">
                 <p>02 / CREATIVE WORK</p>
-                <h2>My Graphic Design and Editing Gallery.</h2>
+                <h2 class="reveal-text">My Graphic Design and Editing Gallery.</h2>
                 <p class="description">
                     Explore my creative work, visual effects,
                     cinematic edits, and video projects.
@@ -784,7 +805,7 @@
 
             <div class="section-heading">
                 <p>03 / CLIENT FEEDBACK</p>
-                <h2>Testimonials.</h2>
+                <h2 class="reveal-text">Testimonials.</h2>
                 <p class="description">
                     Feedback from people I have worked with.
                 </p>
@@ -826,7 +847,7 @@
 
             <div class="section-heading">
                 <p>04 / WORK WITH ME</p>
-                <h2>Let's Edit Your Video.</h2>
+                <h2 class="reveal-text">Let's Edit Your Video.</h2>
                 <p class="description">
                     Tell me what you want. Share your requirements,
                     select your editing style, and send your project
@@ -1035,6 +1056,24 @@ document.getElementById("orderForm").addEventListener("submit", function(event) 
                 "?text=" + encodeURIComponent(message);
 
     window.location.href = url;
+});
+</script>
+    <script>
+const revealElements = document.querySelectorAll('.reveal-text');
+
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.15
+});
+
+revealElements.forEach(element => {
+    revealObserver.observe(element);
 });
 </script>
     </body>
