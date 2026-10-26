@@ -600,6 +600,78 @@ header {
     opacity: 1;
     transform: translateY(0);
 }
+        
+/* LEGEND.AS40 — Image Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(10, 10, 10, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 95%;
+    max-height: 88vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.35);
+    animation: lightboxZoom 0.3s ease;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    color: white;
+    font-size: 36px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    cursor: zoom-in;
+}
+
+@keyframes lightboxZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.88);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 600px) {
+    .lightbox {
+        padding: 12px;
+    }
+
+    .lightbox img {
+        max-width: 100%;
+        max-height: 82vh;
+    }
+
+    .lightbox-close {
+        top: 8px;
+        right: 14px;
+    }
+}
+
     </style>
 </head>
 
@@ -1075,7 +1147,49 @@ const revealObserver = new IntersectionObserver((entries) => {
 revealElements.forEach(element => {
     revealObserver.observe(element);
 });
+        
+const lightbox = document.getElementById("imageLightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const lightboxClose = document.getElementById("lightboxClose");
+
+document.querySelectorAll(".gallery-item img").forEach((img) => {
+    img.addEventListener("click", () => {
+        lightboxImage.src = img.currentSrc || img.src;
+        lightboxImage.alt = img.alt || "Full-size graphic design preview";
+        lightbox.classList.add("active");
+        document.body.style.overflow = "hidden";
+    });
+});
+
+function closeLightbox() {
+    lightbox.classList.remove("active");
+    document.body.style.overflow = "";
+    lightboxImage.src = "";
+}
+
+lightboxClose.addEventListener("click", closeLightbox);
+
+lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
+        closeLightbox();
+    }
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        closeLightbox();
+    }
+});
+
 </script>
+    
+<div class="lightbox" id="imageLightbox">
+    <button class="lightbox-close"
+            id="lightboxClose"
+            aria-label="Close image preview">&times;</button>
+    <img id="lightboxImage" src="" alt="Full-size graphic design preview">
+</div>
+
     </body>
     <!-- republish -->
 </html>
