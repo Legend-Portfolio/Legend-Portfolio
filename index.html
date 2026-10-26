@@ -716,68 +716,65 @@ footer {
     position: relative;
     z-index: 1;
 }
-        
-/* LEGEND.AS40 — Slow Rising Brown Water Wave */
 
-/* Only buttons explicitly marked for the liquid effect */
+  
+/* LEGEND.AS40 — Click-to-Fill Chocolate Water */
+
 .liquid-button {
-    position: relative;
+    position: relative !important;
     isolation: isolate;
-    overflow: hidden;
-    transition:
-        color 0.3s ease,
-        border-color 0.3s ease,
-        transform 0.3s ease;
+    overflow: hidden !important;
+    background: #FFFFFF;
+    color: #151515;
+    z-index: 0;
 }
 
-/* Brown liquid layer */
+/* Visible brown liquid layer */
 .liquid-button::before {
     content: "";
     position: absolute;
     z-index: -1;
     left: -50%;
-    bottom: -110%;
     width: 200%;
-    height: 210%;
+    height: 200%;
+    bottom: -200%;
 
-    background: linear-gradient(
-        180deg,
-        #8B5E3C 0%,
-        #654321 45%,
-        #3B2416 100%
-    );
+    background: #654321;
+    border-radius: 42% 42% 0 0;
 
-    border-radius: 45% 50% 0 0;
-    transform: rotate(0deg);
-    transition: bottom 1.2s ease-in-out;
+    transition: none;
     pointer-events: none;
 }
 
-/* Liquid slowly rises when clicked */
+/* Start filling after click */
+.liquid-button.liquid-filling::before {
+    animation: fillChocolate 1.8s ease-in-out forwards,
+               waveMotion 1.2s ease-in-out 0.4s infinite;
+}
+
 .liquid-button.liquid-filling {
     color: #FFFFFF !important;
-    border-color: #654321 !important;
     pointer-events: none;
 }
 
-.liquid-button.liquid-filling::before {
-    bottom: -55%;
-    animation: brownWaterWave 2.5s ease-in-out infinite;
+/* Raise the water until it covers the button */
+@keyframes fillChocolate {
+    from { bottom: -200%; }
+    to   { bottom: -50%; }
 }
 
-@keyframes brownWaterWave {
+/* Gentle movement on the water surface */
+@keyframes waveMotion {
     0%, 100% {
-        transform: rotate(0deg);
-        border-radius: 45% 50% 0 0;
+        border-radius: 42% 48% 0 0;
+        transform: translateX(-2%) rotate(0deg);
     }
-
     50% {
-        transform: rotate(3deg);
-        border-radius: 50% 45% 0 0;
+        border-radius: 48% 42% 0 0;
+        transform: translateX(2%) rotate(1deg);
     }
 }
-
-
+      
     </style>
 </head>
 
@@ -817,18 +814,14 @@ footer {
                     amazing together.
                 </p>
 
-                <div class="buttons">
-                    <a href="#photos" class="btn btn-light">
-                        Photo Gallery
-                    </a>
-
-                    <a href="#edits" class="btn btn-light">
-                        Explore My Edits
-                    </a>
-
-                    <a href="#order" class="btn btn-light">
-                        Order an Edit
-                    </a>
+                <div class="buttons">   
+                    
+                    <a href="#edits" class="btn btn-light liquid-button">Explore My Edits</a> 
+                    
+                 <a href="#order" class="btn btn-light liquid-button">Order</a>
+                    
+                <a href="#photos" class="btn btn-light liquid-button">Photo</a>
+                    
                 </div>
             </div>
 
@@ -1309,8 +1302,6 @@ document.addEventListener("mousemove", function(e) {
 });
 </script>
     
-
-
 <script>
 document.querySelectorAll('.liquid-button').forEach(button => {
     button.addEventListener('click', function(event) {
@@ -1324,7 +1315,6 @@ document.querySelectorAll('.liquid-button').forEach(button => {
         event.preventDefault();
         this.classList.add('liquid-filling');
 
-        // Wait for the brown liquid to rise
         setTimeout(() => {
             this.classList.remove('liquid-filling');
 
@@ -1332,11 +1322,10 @@ document.querySelectorAll('.liquid-button').forEach(button => {
                 behavior: 'smooth',
                 block: 'start'
             });
-        }, 1200);
+        }, 1800);
     });
 });
 </script>
-
 
     </body>
     <!-- republish -->
